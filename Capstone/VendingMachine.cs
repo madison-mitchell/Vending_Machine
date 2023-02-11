@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace VendingMachine
 {
     public class VendingMachine
     {
+        static string fileName = "Log.md";
+        static string fileDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
+        static string filePath = Path.Combine(fileDirectory, fileName);
+
         public Dictionary<string, Item> AllItems
         {
             get
@@ -36,7 +41,7 @@ namespace VendingMachine
             }
         }
 
-        public decimal MachineBalance { get; set; } = 0.00M;
+        public decimal MachineBalance { get; set; }
         public decimal CustomerBalance { get; set; } = 0.00M;
         public int Quarters { get; set; } = 0;
         public int Dimes { get; set; } = 0;
@@ -134,17 +139,28 @@ namespace VendingMachine
 
         public void LogTransaction(string transactionName, string transactionAmount, string transactionType)
         {
-            string fileName = "Log.md";
-            string fileDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
-            string filePath = Path.Combine(fileDirectory, fileName);
-
             try
             {
-
-                using (StreamWriter writer = new StreamWriter(filePath, true))
+                if (!File.Exists(filePath))
                 {
-                    writer.WriteLine($"| {DateTime.Now.Date.ToString("MM/dd/yyyy")} | {DateTime.Now.TimeOfDay.ToString("hh\\:mm\\:ss")} | {transactionType} | {transactionName} | ${transactionAmount} | ${CustomerBalance} | ${MachineBalance} |");
+                    using (StreamWriter writer = new StreamWriter(filePath, true))
+                    {
+                        writer.WriteLine("| DATE | TIME | TYPE | TRANSACTION | AMOUNT | CUST BAL | MACHINE BAL |\n" +
+                            "| ---- | ---- | ---- | ----------- | ------ | -------- | ----------- |\n" +
+                            $"| **{DateTime.Now.Date.ToString("MM/dd/yyyy")}** | **{DateTime.Now.TimeOfDay.ToString("hh\\:mm\\:ss")}** " +
+                            $"| **ZERO OUT** | **BEGINNING BAL** | **$0.00** | **$0.00** | **$0.00** |");
+
+                        writer.WriteLine($"| {DateTime.Now.Date.ToString("MM/dd/yyyy")} | {DateTime.Now.TimeOfDay.ToString("hh\\:mm\\:ss")} | {transactionType} | {transactionName} | ${transactionAmount} | ${CustomerBalance} | $0.00 |");
+                    }
                 }
+                else
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath, true))
+                    {
+                        writer.WriteLine($"| {DateTime.Now.Date.ToString("MM/dd/yyyy")} | {DateTime.Now.TimeOfDay.ToString("hh\\:mm\\:ss")} | {transactionType} | {transactionName} | ${transactionAmount} | ${CustomerBalance} | ${MachineBalance} |");
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -169,6 +185,39 @@ namespace VendingMachine
 
             Console.WriteLine("\n");
         }
+
+        public void SetMachineBalance()
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    string[] lines = File.ReadAllLines(filePath);
+                    if (lines.Length > 0)
+                    {
+                        for (int i = lines.Length - 1; i >= 0; i--)
+                        {
+                            string line = lines[i];
+                            int machineBalIndex = line.LastIndexOf("| $");
+                            if (machineBalIndex >= 0)
+                            {
+                                int startIndex = machineBalIndex + 3;
+                                int length = line.Length - startIndex - 1;
+                                string machineBalString = line.Substring(startIndex, length);
+                                MachineBalance = Decimal.Parse(machineBalString);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("We have a problem. Please try again :)");
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
+
 

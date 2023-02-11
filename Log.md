@@ -1,16 +1,14 @@
-| DATE | TIME | TYPE | TRANSACTION | AMOUNT | CUST BAL | MACHINE BAL |
-| ---- | ---- | ---- | ----------- | ------ | -------- | ----------- |
-| 02/10/2023 | 16:58:17 | Add Funds | *Customer Funds* | $6.00 | $6.00 | $0.00 |
-| 02/10/2023 | 16:58:19 | **Sale** | Beach Duck | $1.50 | $4.50 | $1.50 |
-| 02/10/2023 | 16:58:21 | **Sale** | Calico Cat | $3.55 | $0.95 | $5.05 |
-| 02/10/2023 | 16:58:26 | **Sale** | Yellow Duck | $0.90 | $0.05 | $5.95 |
-| 02/10/2023 | 16:58:27 | Withdrawal Funds | *Customer Funds* | $0.05 | $0.00 | $5.95 |
-| 02/10/2023 | 17:05:48 | Add Funds | *Customer Funds* | $5.00 | $5.00 | $0.00 |
-| 02/10/2023 | 17:05:54 | **Sale** | Rainbow Horse | $1.35 | $3.65 | $1.35 |
-| 02/10/2023 | 17:05:55 | Withdrawal Funds | *Customer Funds* | $3.65 | $0.00 | $1.35 |
-| 02/10/2023 | 17:08:55 | Add Funds | *Customer Funds* | $3.00 | $3.00 | $0.00 |
-| 02/10/2023 | 17:09:00 | **Sale** | Unicorn Pony | $1.95 | $1.05 | $1.95 |
-| 02/10/2023 | 17:09:03 | Withdrawal Funds | *Customer Funds* | $1.05 | $0.00 | $1.95 |
-| 02/10/2023 | 17:30:33 | Add Funds | *Customer Funds* | $5.00 | $5.00 | $0.00 |
-| 02/10/2023 | 17:30:34 | **Sale** | Beach Duck | $1.50 | $3.50 | $1.50 |
-| 02/10/2023 | 17:30:35 | Withdrawal Funds | *Customer Funds* | $3.50 | $0.00 | $1.50 |
+| DATE           | TIME         | TYPE             | TRANSACTION       | AMOUNT    | CUST BAL  | MACHINE BAL |
+| -------------- | ------------ | ---------------- | ----------------- | --------- | --------- | ----------- |
+| **02/11/2023** | **10:52:49** | **ZERO OUT**     | **BEGINNING BAL** | **$0.00** | **$0.00** | **$0.00**   |
+| 02/11/2023     | 10:52:49     | Add Funds        | _Customer Funds_  | $7.00     | $7.00     | $0.00       |
+| 02/11/2023     | 10:52:53     | **Sale**         | Calico Cat        | $3.55     | $3.45     | $3.55       |
+| 02/11/2023     | 10:52:58     | **Sale**         | Bat Duck          | $2.00     | $1.45     | $5.55       |
+| 02/11/2023     | 10:53:00     | Withdrawal Funds | _Customer Funds_  | $1.45     | $0.00     | $5.55       |
+| 02/11/2023     | 10:53:34     | Add Funds        | _Customer Funds_  | $2.00     | $2.00     | $5.55       |
+| 02/11/2023     | 10:53:42     | Add Funds        | _Customer Funds_  | $0.50     | $2.50     | $5.55       |
+| 02/11/2023     | 10:53:42     | **Sale**         | Cube Duck         | $2.50     | $0.00     | $8.05       |
+| 02/11/2023     | 10:53:43     | Withdrawal Funds | _Customer Funds_  | $0.00     | $0.00     | $8.05       |
+| 02/11/2023     | 10:59:30     | Add Funds        | _Customer Funds_  | $3.00     | $3.00     | $8.05       |
+| 02/11/2023     | 10:59:36     | **Sale**         | Pegasus Pony      | $1.85     | $1.15     | $9.90       |
+| 02/11/2023     | 10:59:37     | Withdrawal Funds | _Customer Funds_  | $1.15     | $0.00     | $9.90       |

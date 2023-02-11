@@ -17,6 +17,7 @@ namespace VendingMachine
             Dictionary<string, Item> items = vm.AllItems;
             int totalItemInventory = vm.GetTotalItemInventory(items);
             int input = 0;
+            vm.SetMachineBalance();
 
             Console.WriteLine("Animal Vending Machine\n" +
                 "WELCOME!\n\n");
